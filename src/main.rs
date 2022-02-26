@@ -84,6 +84,27 @@ fn print_result_3() {
     println!("{:?}", next_result);
 }
 
+fn print_vec() {
+    let v1 = vec![1,2,3,4,5];
+    let v2 = vec![0; 5];
+    println!("{}", v1[0]);
+    println!("{:?}", &v2[0..5]);
+
+    let v = vec![1,2,3,4,5];
+    for e in &v {
+        println!("{}", e);
+    }
+}
+
+fn print_box() {
+    let byte_array = [b'1', b'2'];
+    println!("{:?}", Box::new(byte_array));
+    print(Box::new(byte_array));
+}
+fn print(s: Box<[u8]>) {
+    println!("{:?}", s);
+}
+
 fn main() {
     print_string();
     print_tuple();
@@ -94,4 +115,6 @@ fn main() {
     print_result_1();
     print_result_2();
     print_result_3();
+    print_vec();
+    print_box();
 }

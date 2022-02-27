@@ -105,6 +105,60 @@ fn print(s: Box<[u8]>) {
     println!("{:?}", s);
 }
 
+fn print_loop() {
+    let mut count = 0;
+    let result = loop {
+        println!("count_1: {}", count);
+        count += 1;
+        if count == 10 {
+            break count;
+        }
+    };
+    println!("result_1: {}", result);
+
+    let mut count = 0;
+    while count < 10 {
+        println!("count_2: {}", count);
+        count += 1;
+    }
+
+    for count in 0..10 {
+        println!("count_3: {}", count);
+    }
+
+    let array = [0,1,2,3,4,5];
+    for e in &array {
+        println!("element: {}", e);
+    }
+
+    for i in 1..5 {
+        println!("range: {}", i);
+    }
+
+    struct Iter {
+        current: usize,
+        max: usize
+    }
+    impl Iterator for Iter {
+        type Item = usize;
+        fn next(&mut self) -> Option<usize> {
+            self.current += 1;
+            if self.current - 1 < self.max {
+                Some(self.current - 1)
+            } else {
+                None
+            }
+        }
+    }
+    let it = Iter {
+        current: 0,
+        max: 10
+    };
+    for n in it {
+        println!("iter: {}", n);
+    }
+}
+
 fn main() {
     print_string();
     print_tuple();
@@ -117,4 +171,5 @@ fn main() {
     print_result_3();
     print_vec();
     print_box();
+    print_loop();
 }

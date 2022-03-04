@@ -23,6 +23,26 @@ struct Person {
     name: String,
     age: u32
 }
+
+impl Person {
+    fn new(name: &str, age: u32) -> Person {
+        Person {
+            name: String::from(name),
+            age: age
+        }
+    }
+
+    fn say_name(&self) -> &Self {
+        println!("I am {}.", self.name);
+        self
+    }
+
+    fn say_age(&self) -> &Self {
+        println!("I am {} old.", self.age);
+        self
+    }
+}
+
 fn print_struct() {
     let p = Person {
         name: String::from("野口　修"),
@@ -159,6 +179,17 @@ fn print_loop() {
     }
 }
 
+fn print_impl() {
+    let p = Person {
+        name: String::from("Taro"),
+        age: 20
+    };
+    p.say_name().say_age();
+
+    let p = Person::new("Hanako", 16);
+    p.say_name().say_age();
+}
+
 fn main() {
     print_string();
     print_tuple();
@@ -172,4 +203,5 @@ fn main() {
     print_vec();
     print_box();
     print_loop();
+    print_impl();
 }

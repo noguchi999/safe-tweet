@@ -190,6 +190,44 @@ fn print_impl() {
     p.say_name().say_age();
 }
 
+trait Tweet {
+    fn tweet(&self);
+
+    fn tweet_twice(&self) {
+        self.tweet();
+        self.tweet();
+    }
+
+    fn shout(&self) {
+        println!("Uoooooh");
+    }
+}
+
+struct Dove;
+struct Duck;
+
+impl Tweet for Dove {
+    fn tweet(&self) {
+        println!("Cool");
+    }
+}
+
+impl Tweet for Duck {
+    fn tweet(&self) {
+        println!("Shubaaau!!");
+    }
+}
+
+fn print_trait() {
+    let dove = Dove {};
+    dove.tweet();
+    dove.tweet_twice();
+
+    let duck = Duck {};
+    duck.tweet();
+    duck.shout();
+}
+
 fn main() {
     print_string();
     print_tuple();
@@ -204,4 +242,5 @@ fn main() {
     print_box();
     print_loop();
     print_impl();
+    print_trait();
 }
